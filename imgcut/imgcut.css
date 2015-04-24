@@ -1,0 +1,103 @@
+body{
+    background: #333;
+}
+
+#box{
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    width: 640px;
+    height: 360px;
+}
+
+#img1{
+    width: 640px;
+    height: 360px;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#img2{
+    width: 640px;
+    height: 360px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(0,200px,200px,0);
+}
+
+#main{
+    border: 1px solid white;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+}
+
+.minDiv{
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+}
+
+.leftUp{
+    left: -4px;
+    top: -4px;
+    cursor: nw-resize;
+}
+
+.up{
+    left: 50%;
+    margin-left: -4px;
+    top: -4px;
+    cursor: n-resize;
+}
+
+.rightUp{
+    right: 0;
+    margin-right: -4px;
+    top: -4px;
+    cursor: ne-resize;
+}
+
+.right{
+    right: 0;
+    margin-right: -4px;
+    top: 50%;
+    margin-top: -4px;
+    cursor: e-resize;
+}
+
+.rightDown{
+    right: 0;
+    margin-right: -4px;
+    bottom: 0;
+    margin-bottom: -4px;
+    cursor: se-resize;
+}
+
+.down{
+    left: 50%;
+    margin-left: -4px;
+    bottom: 0;
+    margin-bottom: -4px;
+    cursor: s-resize;
+}
+
+.leftDown{
+    margin-left: -4px;
+    bottom: 0;
+    margin-bottom: -4px;
+    cursor: sw-resize;
+}
+
+.left{
+    margin-left: -4px;
+    top: 50%;
+    margin-top: -4px;
+    cursor: w-resize;
+}
