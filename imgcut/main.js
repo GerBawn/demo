@@ -3,41 +3,38 @@
  */
 
 window.onload = function(){
-    var rightDot = document.getElementById('right'),
-        leftDot = document.getElementById('left'),
-        topDot = document.getElementById('up'),
-        bottomDot = document.getElementById('down');
-        mainDiv = document.getElementById('main'),
-        boxDiv = document.getElementById('box'),
+    document.onselectstart = function(e){
+        e.returnValue = false;
+    };
+    var mainDiv = document.getElementById('main'),
         keydown = false,
         clickedDot = '',
         dots = document.getElementsByClassName('minDiv');
 
     for(var i = 0; i < dots.length; i++){
-        dots[i].onmousedown = function(){
+        dots[i].onmousedown = function(e){
             keydown = true;
             clickedDot = this.id;
+            e.stopPropagation();
         }
     }
-    //topDot.onmousedown = function(){
-    //    keydown = true;
-    //    clickDot = 'top';
-    //};
-    //
-    //rightDot.onmousedown = function(){
-    //    keydown = true;
-    //    clickDot = 'right';
-    //};
-    //
-    //bottomDot.onmousedown = function(){
-    //    keydown = true;
-    //    clickDot = 'bottom';
-    //};
-    //
-    //leftDot.onmousedown = function(){
-    //    keydown = true;
-    //    clickDot = 'left';
-    //};
+
+    mainDiv.onmousedown = function(e){
+        var initX = this.offsetLeft - e.clientX,
+            initY = this.offsetTop - e.clientY;
+        this.onmousemove = function(e){
+            var left = e.clientX + initX,
+                top = e.clientY + initY,
+                maxLeft = this.offsetParent.offsetWidth - this.offsetWidth,
+                maxTop = this.offsetParent.offsetHeight - this.offsetHeight;
+            if(left >=0 && left < maxLeft){
+                this.style.left = left + 'px';
+            }
+            if(top >= 0 && top < maxTop){
+                this.style.top = top + 'px';
+            }
+        }
+    };
 
     window.onmousemove = function(e){
         if(true === keydown) {
@@ -72,10 +69,13 @@ window.onload = function(){
                     break;
             }
         }
+        setChoice(mainDiv);
+        setPreview(mainDiv);
     };
 
     window.onmouseup = function(){
         keydown = false;
+        mainDiv.onmousemove = null;
     };
 };
 
@@ -83,24 +83,58 @@ function clickTop(e, element){
     var y = e.clientY,
         addHeight = y - getPosition(element).top,
         heightBefore = element.offsetHeight - 2;
-    element.style.height = heightBefore - addHeight + 'px';
-    element.style.top = element.offsetTop + addHeight + 'px';
+    if(y >= getPosition(element.offsetParent).top && (heightBefore - addHeight) > 0){
+        element.style.height = heightBefore - addHeight + 'px';
+        element.style.top = element.offsetTop + addHeight + 'px';
+    }
 }
 
 function clickLeft(e, element){
     var x = e.clientX,
         addWidth = x - getPosition(element).left,
         widthBefore = element.offsetWidth - 2;
-    element.style.width = widthBefore - addWidth + 'px';
-    element.style.left = element.offsetLeft + addWidth + 'px';
+    if(x >= getPosition(element.offsetParent).left && (widthBefore - addWidth) > 0){
+        element.style.width = widthBefore - addWidth + 'px';
+        element.style.left = element.offsetLeft + addWidth + 'px';
+    }
 }
 
 function clickRight(e, element){
-    var x = e.clientX;
-    element.style.width = x - getPosition(element).left + 'px';
+    var width = e.clientX - getPosition(element).left,
+        parentWidth = element.offsetParent.offsetWidth,
+        left = element.offsetLeft;
+    if(width > 0 && (left + width) <= parentWidth){
+        element.style.width = width + 'px';
+    }
 }
 
 function clickBottom(e, element){
-    var y = e.clientY;
-    element.style.height = y - getPosition(element).top + 'px';
+    var height = e.clientY - getPosition(element).top,
+        parentHeight = element.offsetParent.offsetHeight,
+        top = element.offsetTop;
+    if(height > 0 && (top + height) <= parentHeight){
+        element.style.height = height + 'px';
+    }
+}
+
+function setVisible(element, img){
+    var top = element.offsetTop,
+        right = element.offsetLeft + element.offsetWidth,
+        bottom = element.offsetTop + element.offsetHeight,
+        left = element.offsetLeft;
+    img.style.clip = 'rect(' + top + 'px, ' + right + 'px, ' + bottom + 'px, ' + left + 'px)';
+}
+
+function setChoice(element){
+    var img = document.getElementById('img2');
+    setVisible(element, img);
+    img.style.clip = 'rect(' + top + 'px, ' + right + 'px, ' + bottom + 'px, ' + left + 'px)';
+
+}
+
+function setPreview(element){
+    var img = document.getElementById('img3');
+    setVisible(element, img);
+    img.style.top = -1 * element.offsetTop + 'px';
+    img.style.left = -1 * element.offsetLeft + 'px';
 }
