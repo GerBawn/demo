@@ -16,5 +16,4 @@ $(function(){
             tip.animate({'top': 100, 'opacity': 0}, 300);
         }
     });
-
 });
