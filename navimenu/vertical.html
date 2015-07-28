@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+            /*width: 100px;*/
+            /*border-bottom: 10px solid #f60;*/
+        }
+
+        ul.main{
+            /*overflow: hidden;*/
+            margin: 20px;
+
+        }
+
+        .main > li > a {
+            text-decoration: none;
+            display: block;
+            background-color: #ccc;
+            text-align: center;
+            width: 100px;
+            -webkit-border-radius: 5px 5px 0 0;
+            -moz-border-radius: 5px 5px 0 0;
+            border-radius: 5px 5px 0 0;
+        }
+
+        li {
+            /*float: left;*/
+            position: relative;
+            float: left;
+
+        }
+
+        a:hover {
+            background-color: #f60;
+        }
+
+        .main > li > a:hover ~ ul.sub {
+            display: block;
+        }
+
+        ul:after {
+            border-bottom: 10px solid #f60;
+        }
+
+        ul.sub {
+            display: none;
+            position: absolute;
+            background-color: #cccccc;
+        }
+
+    </style>
+</head>
+<body>
+<ul class="main">
+    <li>
+        <a href="#">首&nbsp;&nbsp;页</a>
+        <ul class="sub">
+            <li><a href="#">新闻快讯</a></li>
+            <li><a href="#">产品展示</a></li>
+            <li><a href="#">售后服务</a></li>
+            <li><a href="#">联系我们</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">新闻快讯</a>
+        <ul class="sub">
+            <li><a href="#">新闻快讯</a></li>
+            <li><a href="#">产品展示</a></li>
+            <li><a href="#">售后服务</a></li>
+            <li><a href="#">联系我们</a></li>
+        </ul>
+    </li>
+    <li><a href="#">产品展示</a></li>
+    <li><a href="#">售后服务</a></li>
+    <li><a href="#">联系我们</a></li>
+
+</ul>
+</body>
+</html>
