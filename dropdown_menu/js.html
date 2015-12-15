@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .nav{
+            background-color: #ccc;
+            width: 600px;
+            margin: 30px auto;
+            height: 40px;
+        }
+        .nav > li{
+            float: left;
+            position: relative;
+            border-left: 1px solid #666;
+            height: 40px;
+            line-height: 40px;
+        }
+        .nav > li:last-child{
+            border-right: 1px solid #666;
+        }
+        a{
+            text-align: center;
+            text-decoration: none;
+            padding: 0 10px;
+            display: inline-block;
+        }
+        a:hover{
+            background-color: #b1b1b1;
+        }
+        li ul{
+            position: absolute;
+            top: 40px;
+            left: 0;
+            display: none;
+        }
+        li ul li{
+            background-color: #999;
+            padding: 0 10px;
+        }
+        .clearfix:after{
+            content:'';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<ul class="nav clearfix">
+    <li class="main-menu">
+        <a href="#">首页</a>
+        <ul>
+            <li>lingchen</li>
+            <li>lingchen</li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <a href="#">课程大厅<span></span></a>
+        <ul>
+            <li>lingchen</li>
+            <li>lingchen</li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <a href="#">学习中心<span></span></a>
+        <ul>
+            <li>lingchen</li>
+            <li>lingchen</li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <a href="#">经典案例<span></span></a>
+        <ul>
+            <li>lingchen</li>
+            <li>lingchen</li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <a href="#">关于我们<span></span></a>
+        <ul>
+            <li>lingchen</li>
+            <li>lingchen</li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+var mainMenu = document.getElementsByClassName('main-menu');
+for(var i = 0, l = mainMenu.length; i < l; i++){
+    mainMenu[i].onmouseover = function(){
+        this.getElementsByTagName('ul')[0].style.display = 'block';
+    };
+    mainMenu[i].onmouseout = function(){
+        this.getElementsByTagName('ul')[0].style.display = 'none';
+    }
+}
+
+</script>
+</body>
+</html>
